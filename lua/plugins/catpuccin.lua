@@ -131,7 +131,7 @@ return {
             VertSplit = { bg = colors.base, fg = colors.surface0 },
             WhichKeyFloat = { bg = colors.mantle },
             YankHighlight = { bg = colors.surface2 },
-            FidgetTask = { fg = colors.subtext2 },
+            -- FidgetTask = { fg = colors.subtext2 },
             FidgetTitle = { fg = colors.peach },
 
             IblIndent = { fg = colors.surface0 },
@@ -163,8 +163,8 @@ return {
             SpecialChar = { fg = colors.yellow },
             Type = { fg = colors.yellow, style = { "bold" } },
             Function = { fg = colors.green, style = { "bold" } },
-            Delimiter = { fg = colors.subtext2 },
-            Ignore = { fg = colors.subtext2 },
+            -- Delimiter = { fg = colors.subtext2 },
+            -- Ignore = { fg = colors.subtext2 },
             Macro = { fg = colors.teal },
 
             TSAnnotation = { fg = colors.mauve },
@@ -214,7 +214,7 @@ return {
             TSRepeat = { fg = colors.red },
             TSStorageClass = { fg = colors.peach },
             TSStorageClassLifetime = { fg = colors.peach },
-            TSStrike = { fg = colors.subtext2 },
+            -- TSStrike = { fg = colors.subtext2 },
             TSString = { fg = colors.teal },
             TSStringEscape = { fg = colors.green },
             TSStringRegex = { fg = colors.green },
@@ -354,6 +354,6 @@ return {
       },
     })
 
-    vim.api.nvim_command("colorscheme catppuccin")
+    -- vim.api.nvim_command("colorscheme catppuccin")
   end,
 }

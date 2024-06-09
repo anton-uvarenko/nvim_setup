@@ -1,7 +1,12 @@
 return {
   "hrsh7th/nvim-cmp",
   dependencies = {
-    "hrsh7th/cmp-emoji",
+    "onsails/lspkind.nvim",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-buffer",
+    { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
+    "saadparwaiz1/cmp_luasnip",
   },
   ---@param opts cmp.ConfigSchema
   opts = function(_, opts)
@@ -13,6 +18,22 @@ return {
 
     local luasnip = require("luasnip")
     local cmp = require("cmp")
+
+    cmp.setup({
+      sources = {
+        { name = "nvim_lsp" },
+        -- { name = "cody" },
+        { name = "path" },
+        { name = "buffer" },
+      },
+    })
+
+    cmp.setup.filetype({ "sql", "mysql" }, {
+      sources = {
+        { name = "vim-dadbod-completion" },
+        { name = "buffer" },
+      },
+    })
 
     opts.mapping = vim.tbl_extend("force", opts.mapping, {
       ["<Tab>"] = cmp.mapping(function(fallback)
