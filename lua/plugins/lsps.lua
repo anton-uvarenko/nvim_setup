@@ -57,6 +57,12 @@ return {
         svelte = true,
         templ = true,
         cssls = true,
+        html = true,
+        htmx = {
+          filetypes = {
+            "templ",
+          },
+        },
 
         -- Probably want to disable formatting for this lang server
         tsserver = true,

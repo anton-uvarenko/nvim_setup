@@ -13,7 +13,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "oh-lucy-evening",
+      colorscheme = "flow",
     },
   },
 
@@ -35,6 +35,8 @@ return {
     keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
     config = true,
   },
+
+  { "rose-pine/neovim", name = "rose-pine" },
 
   -- override nvim-cmp and add cmp-emoji
   {

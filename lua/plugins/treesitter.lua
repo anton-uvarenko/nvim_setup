@@ -7,6 +7,7 @@ return {
       "javascript",
       "json",
       "lua",
+      "go",
       "markdown",
       "markdown_inline",
       "python",
