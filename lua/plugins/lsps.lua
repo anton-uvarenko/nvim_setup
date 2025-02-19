@@ -6,6 +6,7 @@ return {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
+      "saghen/blink.cmp",
 
       { "j-hui/fidget.nvim", opts = {} },
 
@@ -16,17 +17,7 @@ return {
       "b0o/SchemaStore.nvim",
     },
     config = function()
-      require("neodev").setup({
-        -- library = {
-        --   plugins = { "nvim-dap-ui" },
-        --   types = true,
-        -- },
-      })
-
-      local capabilities = nil
-      if pcall(require, "cmp_nvim_lsp") then
-        capabilities = require("cmp_nvim_lsp").default_capabilities()
-      end
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       local lspconfig = require("lspconfig")
 
@@ -57,16 +48,18 @@ return {
         svelte = true,
         templ = true,
         cssls = true,
-        html = true,
-        htmx = {
+        html = {
           filetypes = {
+            "html",
             "templ",
           },
         },
-
-        -- Probably want to disable formatting for this lang server
-        tsserver = true,
-
+        -- htmx = {
+        --   filetypes = {
+        --     "templ",
+        --   },
+        -- },
+        ts_ls = true,
         jsonls = {
           settings = {
             json = {
@@ -75,7 +68,6 @@ return {
             },
           },
         },
-
         yamlls = {
           settings = {
             yaml = {
@@ -105,11 +97,6 @@ return {
           -- TODO: Check if i still need the filtypes stuff i had before
         },
 
-        lexical = {
-          cmd = { "/home/tjdevries/.local/share/nvim/mason/bin/lexical", "server" },
-          root_dir = require("lspconfig.util").root_pattern({ "mix.exs" }),
-        },
-
         clangd = {
           -- TODO: Could include cmd, but not sure those were all relevant flags.
           --    looks like something i would have added while i was floundering
@@ -132,7 +119,8 @@ return {
         "stylua",
         "lua_ls",
         "delve",
-        -- "tailwind-language-server",
+        "ts_ls",
+        "gopls",
       }
 
       vim.list_extend(ensure_installed, servers_to_install)
@@ -159,12 +147,34 @@ return {
           local client = assert(vim.lsp.get_client_by_id(args.data.client_id), "must have valid client")
 
           vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
-          vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
-          vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = 0 })
-          vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = 0 })
-          vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, { buffer = 0 })
-          vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
-          vim.keymap.set("n", "gI", vim.lsp.buf.implementation, { buffer = 0 })
+
+          vim.keymap.set(
+            "n",
+            "gI",
+            "<CMD>FzfLua lsp_implementations jump1=true ignore_current_line=true<cr>",
+            { noremap = true, silent = true }
+          )
+
+          vim.keymap.set(
+            "n",
+            "gd",
+            "<CMD>FzfLua lsp_definitions jump1=true ignore_current_line=true<cr>",
+            { noremap = true, silent = true }
+          )
+
+          vim.keymap.set(
+            "n",
+            "gr",
+            "<CMD>FzfLua lsp_references jump1=true ignore_current_line=true<cr>",
+            { noremap = true, silent = true }
+          )
+
+          vim.keymap.set(
+            "n",
+            "gy",
+            "<CMD>FzfLua lsp_typedefs jump1=true ignore_current_line=true<cr>",
+            { noremap = true, silent = true }
+          )
 
           vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, { buffer = 0 })
           vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, { buffer = 0 })
@@ -180,6 +190,8 @@ return {
       require("conform").setup({
         formatters_by_ft = {
           lua = { "stylua" },
+          templ = { "templ" },
+          go = { "goimports" },
         },
       })
 

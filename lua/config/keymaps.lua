@@ -11,3 +11,14 @@
 -- vim.keymap.set("n", "<leader>uc", require("undotree").close, { noremap = true, silent = true })
 
 vim.opt.swapfile = false
+
+vim.keymap.set(
+  "n",
+  "<leader>ccs",
+  "<CMD>lua require('textcase').current_word('to_snake_case')<CR>",
+  { noremap = true, silent = true }
+)
+
+-- vim.keymap.set("n", "<leader>e", "<CMD>e .<CR>", { noremap = true, silent = true })
+
+-- ExampleWord
