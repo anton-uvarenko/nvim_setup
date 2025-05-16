@@ -7,7 +7,7 @@ return {
   },
 
   config = function()
-    local dap, dapui = require("dap"), require("dapui")
+    local dap, dapui, dapgo = require("dap"), require("dapui"), require("dap-go")
 
     require("dapui").setup()
     -- require("dap-go").setup()
@@ -34,6 +34,9 @@ return {
     vim.keymap.set("n", "<F4>", dap.run_to_cursor, { desc = "run to cursor" })
     vim.keymap.set("n", "<Leader>dc", dap.continue, { desc = "continue" })
     vim.keymap.set("n", "<Leader>ds", dap.close, { desc = "stop" })
+
+    vim.keymap.set("n", "<Leader>dg", dapgo.debug_test, { desc = "debug test dapgo" })
+
     vim.keymap.set("n", "<Leader>dr", ":lua require('dapui').open({reset = true})<CR>", { desc = "reset" })
 
     vim.fn.sign_define(

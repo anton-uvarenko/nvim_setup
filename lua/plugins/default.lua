@@ -10,12 +10,6 @@
 -- * override the configuration of LazyVim plugins
 return {
   { "Yazeed1s/oh-lucy.nvim" },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "everforest",
-    },
-  },
 
   {"bufferline.nvim", enabled = false},
 
@@ -53,7 +47,6 @@ return {
 
   -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
   -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
-  { import = "lazyvim.plugins.extras.lang.typescript" },
 
   -- add more treesitter parsers
   -- since `vim.tbl_deep_extend`, can only merge tables and not lists, the code above
@@ -78,22 +71,4 @@ return {
       table.insert(opts.sections.lualine_x, "😄")
     end,
   },
-
-  -- or you can return new options to override all the defaults
-  -- {
-  --   "nvim-lualine/lualine.nvim",
-  --   event = "VeryLazy",
-  --   opts = function()
-  --     return {
-  --       --[[add your custom lualine config here]]
-  --     }
-  --   end,
-  -- },
-
-  -- use mini.starter instead of alpha
-  { import = "lazyvim.plugins.extras.ui.mini-starter" },
-
-  -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
-  { import = "lazyvim.plugins.extras.lang.json" },
-
 }

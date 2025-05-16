@@ -31,6 +31,7 @@ return {
               },
               gofumpt = true,
               staticcheck = true,
+              buildFlags = { "-tags", "build wireinject" },
               hints = {
                 assignVariableTypes = true,
                 compositeLiteralFields = true,
@@ -193,17 +194,22 @@ return {
           templ = { "templ" },
           go = { "goimports" },
         },
+        format_on_save = {
+          -- These options will be passed to conform.format()
+          timeout_ms = 500,
+          lsp_format = "fallback",
+        },
       })
 
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        callback = function(args)
-          require("conform").format({
-            bufnr = args.buf,
-            lsp_fallback = true,
-            quiet = true,
-          })
-        end,
-      })
+      -- vim.api.nvim_create_autocmd("BufWritePre", {
+      --   callback = function(args)
+      --     require("conform").format({
+      --       bufnr = args.buf,
+      --       lsp_fallback = true,
+      --       quiet = true,
+      --     })
+      --   end,
+      -- })
     end,
   },
 }

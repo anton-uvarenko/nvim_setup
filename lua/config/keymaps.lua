@@ -19,6 +19,16 @@ vim.keymap.set(
   { noremap = true, silent = true }
 )
 
+vim.keymap.set("n", "<leader>e", "<CMD>Oil<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>E", "<CMD>Oil .<CR>", { noremap = true, silent = true })
+
+vim.keymap.set(
+  "n",
+  "<leader>by",
+  ':lua vim.fn.setreg("+", vim.fn.expand("%:p"))<CR>',
+  { noremap = true, silent = true, desc = "copy current file path to clipboard" }
+)
+
 -- vim.keymap.set("n", "<leader>e", "<CMD>e .<CR>", { noremap = true, silent = true })
 
 -- ExampleWord
