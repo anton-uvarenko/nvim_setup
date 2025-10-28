@@ -13,6 +13,13 @@ return {
 
   {"bufferline.nvim", enabled = false},
 
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "rose-pine",
+    },
+  },
+
   -- change trouble config
   {
     "folke/trouble.nvim",
@@ -45,13 +52,6 @@ return {
     },
   },
 
-  -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
-  -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
-
-  -- add more treesitter parsers
-  -- since `vim.tbl_deep_extend`, can only merge tables and not lists, the code above
-  -- would overwrite `ensure_installed` with the new value.
-  -- If you'd rather extend the default config, use the code below instead:
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
