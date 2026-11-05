@@ -11,7 +11,7 @@
 return {
   { "Yazeed1s/oh-lucy.nvim" },
 
-  {"bufferline.nvim", enabled = false},
+  { "bufferline.nvim", enabled = false },
 
   {
     "LazyVim/LazyVim",
